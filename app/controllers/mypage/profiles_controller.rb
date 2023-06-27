@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class Mypage::ProfilesController < Mypage::BaseController
+
+  before_action :set_user , only: %i[show update]
+
   def show
-    @user = current_user
   end
 
   def update
@@ -17,6 +19,10 @@ class Mypage::ProfilesController < Mypage::BaseController
   private
 
   def profile_params
-    params.require(:user).permit(:name, :avatar)
+    params.require(:user).permit(:name, :avatar, :profile, :hobby)
+  end
+
+  def set_user
+    @user = current_user
   end
 end

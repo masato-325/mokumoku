@@ -22,8 +22,13 @@
       <hr />
       <div class="d-flex align-items-center justify-content-between">
         <div class="d-flex align-items-center gap-3">
-          <%= image_tag event.user.decorate.avatar, class: 'avatar-sm rounded-circle' %>
-          <%= event.user.name %>
+         <% link_path = current_user == event.user ? mypage_profile_path : profile_path(event.user) %>
+          <%= link_to link_path do %>
+            <%= image_tag event.user.decorate.avatar, class: 'avatar-sm rounded-circle' %>
+            <%= event.user.name %>
+          <% end %>
+
+            
         </div>
         <% if logged_in? %>
           <div id="js-event-bookmark-<%= event.id %>">
