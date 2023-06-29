@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
 class Mypage::ProfilesController < Mypage::BaseController
+  before_action :set_user, only: %i[show update]
 
-  before_action :set_user , only: %i[show update]
-
-  def show
-  end
+  def show; end
 
   def update
     @user = User.find(current_user.id)
